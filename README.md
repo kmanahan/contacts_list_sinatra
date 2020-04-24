@@ -20,10 +20,10 @@ shotgun
 ```
 
 ## Author
-
-
 Kelly Manahan
 
+## Lincense 
+[MIT](https://opensource.org/licenses/MIT)
 
 
 
