@@ -8,13 +8,13 @@ class UsersController < ApplicationController
   if params[:username] == "" || params[:password] == ""
       redirect '/signup'
     else
-      User.create(username: params[:username], password: params[:password])
+      User.create(params)
       redirect '/login'
     end
   end
   
   get "/login" do 
-    erb :login
+    erb :"users/login"
   end
   
   post "/login" do 
@@ -22,9 +22,9 @@ class UsersController < ApplicationController
   
     if user && user.authenticate(params[:password])
         session[:user_id] = user.id 
-        redirect "/account"
+        redirect "/show"
     else 
-        redirect "failure" 
+        redirect "/login" 
     end
   end
 
