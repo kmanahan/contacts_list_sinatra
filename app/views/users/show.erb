@@ -1,1 +1,22 @@
 <h1>Hello <%=@user.username%></h1>
+<form action="/contacts/new" method="post">
+<button type="submit">Add A Contact</button> 
+</form>
+
+<h2>Contacts List</h2> 
+
+<div>
+  <% @user.each do |contact| %>
+    <%=contact.name%>
+    <%=contact.number%>
+    <%=contact.email%>
+    <%=contact.address%>
+  <%end%>
+<form action="/contacts/edit" method="post">
+<button type="submit">Edit</button> 
+</form>
+<form action="/contacts/delete" method="post">
+<button type="submit">Delete</button> 
+#flash message are you sure you want to delete
+</form>
+</div>
