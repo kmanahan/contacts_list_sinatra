@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   end 
   
   post "/contacts/new" do 
-    @contact = Contact.create(params)
+    @contact = current_user.contacts.create(params)
     erb :"contacts/show"
   end 
 end 

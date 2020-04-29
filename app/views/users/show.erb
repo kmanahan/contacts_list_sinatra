@@ -1,17 +1,19 @@
 <h1>Hello <%=@user.username%></h1>
-<form action="/contacts/new" method="post">
+<form action="/contacts/new">
 <button type="submit">Add A Contact</button> 
 </form>
 
 <h2>Contacts List</h2> 
 
 <div>
-  <% @user.contacts.each do |attribute| %>
-    <%=attribute.name%>
-    <%=attribute.number%>
-    <%=attribute.email%>
-    <%=attribute.address%>
+  <ul>
+    <li><% @user.contacts.each do |attribute| %></li>
+    <li><%=attribute.name%></li>
+    <li><%=attribute.phone%></li>
+    <li><%=attribute.email%></li>
+    <li><%=attribute.address%></li>
   <%end%>
+  </ul>
 <form action="/contacts/edit" method="post">
 <button type="submit">Edit</button> 
 </form>
