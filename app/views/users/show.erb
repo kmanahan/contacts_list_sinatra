@@ -6,17 +6,17 @@
 <h2>Contacts List</h2> 
 
 <div>
-  <% @user.each do |contact| %>
-    <%=contact.name%>
-    <%=contact.number%>
-    <%=contact.email%>
-    <%=contact.address%>
+  <% @user.contacts.each do |attribute| %>
+    <%=attribute.name%>
+    <%=attribute.number%>
+    <%=attribute.email%>
+    <%=attribute.address%>
   <%end%>
 <form action="/contacts/edit" method="post">
 <button type="submit">Edit</button> 
 </form>
 <form action="/contacts/delete" method="post">
 <button type="submit">Delete</button> 
-#flash message are you sure you want to delete
+<% #flash message are you sure you want to delete %>
 </form>
 </div>

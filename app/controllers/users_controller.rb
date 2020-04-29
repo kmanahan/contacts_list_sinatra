@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   
   get "/signup" do 
-    erb :"/users/signup"
+    erb :"users/signup"
   end 
   
   post "/signup" do 
-    erb :"/users/signup"
+    erb :"users/signup"
   end 
   
   post "/users" do 
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if params[:username] == "" && params[:password] == ""
       #create field not empty helper_method
       #flash for if not unique
-      erb :"/users/signup"
+      erb :"users/signup"
     else
       User.create(params)
       redirect '/login'
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
   
   get "/login" do 
-    erb :"/users/login"
+    erb :"users/login"
   end
   
   post "/login" do 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   
   get "/users/:id" do 
     @user = current_user 
-    erb :"/users/show"
+    erb :"users/show"
   end
 
 end
