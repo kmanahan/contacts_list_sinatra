@@ -12,13 +12,13 @@
     <li><%=attribute.phone%></li>
     <li><%=attribute.email%></li>
     <li><%=attribute.address%></li>
+    <form action="/contacts/:id/edit" method="post">
+    <button type="submit">Edit</button> 
+    </form>
+    <form action="/contacts/delete" method="post">
+    <button type="submit">Delete</button> 
   <%end%>
   </ul>
-<form action="/contacts/:id/edit" method="post">
-<button type="submit">Edit</button> 
-</form>
-<form action="/contacts/delete" method="post">
-<button type="submit">Delete</button> 
 <% #flash message are you sure you want to delete %>
 </form>
 </div>

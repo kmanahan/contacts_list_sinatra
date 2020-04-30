@@ -23,7 +23,7 @@ class ContactsController < ApplicationController
     @contact.phone = params[:phone]
     @contact.email = params[:email]
     @contact.address = params[:address]
-    @contact.update
+    @contact.save
     erb:"contacts/show"
   end 
   
