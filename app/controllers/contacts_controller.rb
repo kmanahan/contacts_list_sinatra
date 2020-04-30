@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
   end 
   
   get "/contacts/:id/edit" do
-    @edit = Contact.find_by_id(params[:id])
+    @contact = current_user.contacts.find_by_id(params[:id])
     erb :"contacts/edit"
   end 
   
@@ -17,8 +17,14 @@ class ContactsController < ApplicationController
     redirect "/contacts/:id/edit"
   end
   
-  patch "contacts/:id" do 
-    @edit.update
+  patch "/contacts/:id" do 
+    @contact = current_user.contacts.find_by_id(params[:id])
+    @contact.name = params[:name]
+    @contact.phone = params[:phone]
+    @contact.email = params[:email]
+    @contact.address = params[:address]
+    @contact.update
     erb:"contacts/show"
   end 
+  
 end 
