@@ -10,7 +10,6 @@ class ContactsController < ApplicationController
   
   get "/contacts/:id/edit" do
     @contact = current_user.contacts.find_by_id(params[:id])
-    binding.pry
     erb :"contacts/edit"
   end 
   
@@ -33,7 +32,7 @@ class ContactsController < ApplicationController
      @contact.delete
      #are you sure you want to delete
      #flash message contact has been deleted 
-     erb :"users/show"
+     erb :"contacts/show"
   end 
   
 end 
