@@ -2,3 +2,9 @@
 <li><%= @contact.phone %></li>
 <li><%= @contact.email %></li>
 <li><%= @contact.address %></li>
+<form action="/contacts/:id/edit" method="post">
+<button type="submit">Edit</button> 
+</form>
+<form action="/contacts/<%= @contact.id %>" method="post">
+<input id="hidden" type="hidden" name="_method" value="delete">
+<button type="submit">Delete</button><br><br>

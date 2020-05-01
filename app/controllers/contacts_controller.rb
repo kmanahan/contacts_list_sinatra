@@ -8,17 +8,28 @@ class ContactsController < ApplicationController
     erb :"contacts/show"
   end 
   
+  get "/contacts/:id/show" do 
+    @contact = current_user.contacts.find_by(params[:id])
+    erb :"contacts/show"
+  end 
+  
+  post "/contacts/:id/show" do 
+    @contact = current_user.contacts.find_by(params[:id])
+    erb :"contacts/show"
+  end 
+  
   get "/contacts/:id/edit" do
-    @contact = current_user.contacts.find_by_id(params[:id])
+    @contact = current_user.contacts.find_by(params[:id])
     erb :"contacts/edit"
   end 
   
-  post "/contacts/:id/edit" do 
+  post "/contacts/:id/edit" do
+     @contact = current_user.contacts.find_by(params[:id])
     redirect "/contacts/:id/edit"
   end
   
   patch "/contacts/:id" do 
-    @contact = current_user.contacts.find_by_id(params[:id])
+    @contact = current_user.contacts.find_by(params[:id])
     @contact.name = params[:name]
     @contact.phone = params[:phone]
     @contact.email = params[:email]

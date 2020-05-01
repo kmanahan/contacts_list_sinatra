@@ -38,6 +38,8 @@ class UsersController < ApplicationController
   get "/users/:id" do 
     @user = User.find_by(:username => params[:username])
     @user = current_user
+    @contact = Contact.all 
+    @contact.find(params[:id])
     erb :"users/show"
   end
 

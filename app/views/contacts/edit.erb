@@ -1,4 +1,4 @@
-<form action="/contacts/<%= @contact.id %>" method="post">
+<form action="/contacts/<% @contact %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <input type="text" name="name" value="<%= @contact.name %>">
   <input type="text" name="phone" value="<%= @contact.phone %>">

@@ -6,19 +6,16 @@
 <h2>Contacts List</h2> 
 
 <div>
+  <% @user.contacts.each do |attribute| %>
   <ul>
-    <li><% @user.contacts.each do |attribute| %></li>
     <li><%=attribute.name%></li>
     <li><%=attribute.phone%></li>
     <li><%=attribute.email%></li>
     <li><%=attribute.address%></li>
-    <form action="/contacts/:id/edit" method="post">
-    <button type="submit">Edit</button> 
-    </form>
-  <form action="/contacts/<%= attribute.id %>" method="post">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-    <button type="submit">Delete</button><br><br>
-  <%end%>
+    <!--<form action="/contacts/<%=attribute.id %>/show" method="post">-->
+    <!--<button type="submit">View Contact</button><br><br>-->
+    <!--</form>-->
+    <a href="/contacts/<%=attribute.id %>/show">View</a>
   </ul>
-</form>
+ <%end%>
 </div>
