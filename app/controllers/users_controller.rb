@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   post "/users" do 
     @user = User.create(params)
     if params[:username] == "" && params[:password] == ""
+      flash[:message] = "Signup Failed, please try again"
       #create field not empty helper_method
       #flash for if not unique
       erb :"users/signup"
@@ -38,9 +39,12 @@ class UsersController < ApplicationController
   get "/users/:id" do 
     @user = User.find_by(:username => params[:username])
     @user = current_user
-    @contact = Contact.all 
-    @contact.find(params[:id])
     erb :"users/show"
   end
 
+ get "/logout" do 
+    session.clear 
+    redirect "/"
+  end 
+  
 end

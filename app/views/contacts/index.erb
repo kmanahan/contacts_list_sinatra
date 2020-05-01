@@ -1,0 +1,17 @@
+<form action="/contacts/new">
+<button type="submit">Add A Contact</button> 
+</form>
+
+<h2>Contacts List</h2> 
+
+<div>
+  <% @user.contacts.each do |attribute| %>
+  <ul>
+    <li><%=attribute.name%></li>
+    <li><%=attribute.phone%></li>
+    <li><%=attribute.email%></li>
+    <li><%=attribute.address%></li>
+    <a href="/contacts/<%=attribute.id %>/show">View</a>
+  </ul>
+ <%end%>
+</div>

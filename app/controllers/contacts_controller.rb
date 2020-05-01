@@ -38,12 +38,19 @@ class ContactsController < ApplicationController
     redirect to "/contacts/#{@contact.id}/show"
   end 
   
+  get "/contacts" do 
+    @user = User.find_by(:username => params[:username])
+    @user = current_user
+    @contact = Contact.all
+    erb :"contacts/index"
+  end 
+  
   delete "/contacts/:id" do 
-     @contact = current_user.contacts.find_by_id(params[:id])
+     @contact = current_user.contacts.find(params[:id])
      @contact.delete
      #are you sure you want to delete
      #flash message contact has been deleted 
-     erb :"contacts/show"
+     redirect "/contacts"
   end 
   
 end 

@@ -14,9 +14,23 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
-    <div class="wrapper">
-
-        <%= yield %>
+    <div class="nav">
+      <% if current_user %>
+        <a href="/logout">logout</a> 
+        <a href="/users/:id">My Homepage</a> 
+      <% else %>
+        <a href="/signup">signup</a>
+        <a href="/login">login</a>
+      <% end %>
+    </div>
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+        <%= flash[type] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+    
+    <%= yield %>
 
       <footer class="branding">
         <small>&copy; 2020 <strong>ContactsListSinatra</strong></small>
