@@ -15,10 +15,10 @@
     <form action="/contacts/:id/edit" method="post">
     <button type="submit">Edit</button> 
     </form>
-    <form action="/contacts/delete" method="post">
-    <button type="submit">Delete</button> 
+  <form action="/contacts/<%= @contact.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+    <button type="submit">Delete</button><br><br>
   <%end%>
   </ul>
-<% #flash message are you sure you want to delete %>
 </form>
 </div>
