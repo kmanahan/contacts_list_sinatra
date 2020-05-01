@@ -9,15 +9,13 @@ class UsersController < ApplicationController
   end 
   
   post "/users" do 
-    @user = User.create(params)
-    if params[:username] == "" && params[:password] == ""
-      flash[:message] = "Signup Failed, please try again"
-      #create field not empty helper_method
-      #flash for if not unique
-      erb :"users/signup"
-    else
-      User.create(params)
+    @user = User.new(params)
+    if @user.valid? 
+        @user.save
       redirect '/login'
+    else
+      flash[:message] = "Signup Failed, please try again"
+      redirect '/signup'
     end
   end
   
