@@ -11,11 +11,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    # if logged_in? 
-    #   redirect "/users/#{current_user.id}"
-    # else 
+    if logged_in? 
+      redirect "/users/#{current_user.id}"
+    else 
     erb :index
-  # end
+  end
 end
 
   helpers do 
@@ -38,6 +38,10 @@ end
         redirect "/"
       end
     end
+    
+    def find_contact 
+    @contact = current_user.contacts.find(params[:id])
+  end 
     
   end 
 end

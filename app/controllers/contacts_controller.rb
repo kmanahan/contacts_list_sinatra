@@ -18,36 +18,73 @@ class ContactsController < ApplicationController
     end
   
   get "/contacts/:id/show" do 
-    @contact = current_user.contacts.find(params[:id])
-    erb :"contacts/show"
+    find_contact 
+    if logged_in?
+      if authorized?(@contact)
+        erb :"contacts/show"
+    else 
+      flash[:message] = "oops, you do not have access to this page"
+      redirect "/contacts" 
+      end
+    end
   end 
   
   post "/contacts/:id/show" do 
-    @contact = current_user.contacts.find(params[:id])
-    erb :"contacts/show"
+    find_contact 
+    if logged_in?
+      if authorized?(@contact)
+        erb :"contacts/show"
+    else 
+      flash[:message] = "oops, you do not have access to this page"
+      redirect "/contacts" 
+      end
+    end
   end 
   
   get "/contacts/:id/edit" do
-    @contact = current_user.contacts.find(params[:id])
-    erb :"contacts/edit"
+    find_contact 
+    if logged_in?
+      if authorized?(@contact)
+        erb :"contacts/edit"
+    else 
+      flash[:message] = "oops, you do not have access to this page"
+      redirect "/contacts" 
+      end
+    end
   end 
   
   post "/contacts/:id/edit" do
-     @contact = current_user.contacts.find(params[:id])
-    redirect "/contacts/:id/edit"
+    find_contact
+    if logged_in?
+      if authorized?(@contact)
+        redirect "/contacts/:id/edit"
+    else 
+      flash[:message] = "oops, you do not have access to this page"
+      redirect "/contacts" 
+      end
+    end
   end
   
   patch "/contacts/:id" do 
-    @contact = current_user.contacts.find(params[:id])
-    @contact.name = params[:name]
-    @contact.phone = params[:phone]
-    @contact.email = params[:email]
-    @contact.address = params[:address]
-    @contact.save
-    redirect to "/contacts/#{@contact.id}/show"
+    find_contact 
+    if logged_in?
+      if authorized?(@contact)
+        if @contact.valid?
+          @contact.name = params[:name]
+          @contact.phone = params[:phone]
+          @contact.email = params[:email]
+          @contact.address = params[:address]
+          @contact.save
+          redirect to "/contacts/#{@contact.id}/show"
+        else 
+          redirect "/contacts/#{current_user.id}/edit"
+        end
+      end
+    end
   end 
   
   get "/contacts" do 
+    redirect_if_not_logged_in
     @user = User.find_by(:username => params[:username])
     @user = current_user
     @contact = Contact.all
@@ -55,11 +92,15 @@ class ContactsController < ApplicationController
   end 
   
   delete "/contacts/:id" do 
-     @contact = current_user.contacts.find(params[:id])
-     @contact.delete
+    find_contact 
+    if authorized?(@contact)
+      @contact.delete
+      redirect "/contacts"
+    else 
      #are you sure you want to delete
      #flash message contact has been deleted 
-     redirect "/contacts"
+      redirect "/contacts"
+    end
   end 
   
 end 
