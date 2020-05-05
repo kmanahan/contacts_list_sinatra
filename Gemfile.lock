@@ -34,6 +34,8 @@ GEM
     eventmachine (1.2.7)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
+    mail (2.7.1)
+      mini_mime (>= 0.1.1)
     method_source (1.0.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
@@ -112,6 +114,7 @@ DEPENDENCIES
   activerecord (~> 4.2, >= 4.2.6)
   bcrypt
   capybara
+  mail
   pry
   rack-test
   rake
