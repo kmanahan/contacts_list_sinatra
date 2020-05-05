@@ -40,7 +40,6 @@ end
     end
     
     def find_contact 
-      binding.pry
     @contact = current_user.contacts.find(params[:id])
   end 
     

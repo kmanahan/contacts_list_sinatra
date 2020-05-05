@@ -1,4 +1,13 @@
 class ContactsController < ApplicationController
+    
+  get "/contacts" do 
+    redirect_if_not_logged_in
+    @user = User.find_by(:username => params[:username])
+    @user = current_user
+    @contact = Contact.all
+    erb :"contacts/index"
+  end 
+  
   get "/contacts/new" do 
      redirect_if_not_logged_in
     erb :"contacts/new"
@@ -18,7 +27,7 @@ class ContactsController < ApplicationController
     end
   
   get "/contacts/:id/show" do 
-    find_contact 
+    @contact = find_contact 
     if logged_in?
       if authorized?(@contact)
         erb :"contacts/show"
@@ -29,20 +38,9 @@ class ContactsController < ApplicationController
     end
   end 
   
-  post "/contacts/:id/show" do 
-    find_contact 
-    if logged_in?
-      if authorized?(@contact)
-        erb :"contacts/show"
-    else 
-      flash[:message] = "oops, you do not have access to this page"
-      redirect "/contacts" 
-      end
-    end
-  end 
   
   get "/contacts/:id/edit" do
-    find_contact 
+   @contact = find_contact 
     if logged_in?
       if authorized?(@contact)
         erb :"contacts/edit"
@@ -53,23 +51,11 @@ class ContactsController < ApplicationController
     end
   end 
   
-  post "/contacts/:id/edit" do
-    find_contact
-    if logged_in?
-      if authorized?(@contact)
-        redirect "/contacts/:id/edit"
-    else 
-      flash[:message] = "oops, you do not have access to this page"
-      redirect "/contacts" 
-      end
-    end
-  end
   
   patch "/contacts/:id" do 
-    find_contact 
+    @contact = find_contact
     if logged_in?
       if authorized?(@contact)
-        if @contact.valid?
           @contact.name = params[:name]
           @contact.phone = params[:phone]
           @contact.email = params[:email]
@@ -78,17 +64,8 @@ class ContactsController < ApplicationController
           redirect to "/contacts/#{@contact.id}/show"
         else 
           redirect "/contacts/#{current_user.id}/edit"
-        end
       end
     end
-  end 
-  
-  get "/contacts" do 
-    redirect_if_not_logged_in
-    @user = User.find_by(:username => params[:username])
-    @user = current_user
-    @contact = Contact.all
-    erb :"contacts/index"
   end 
   
   delete "/contacts/:id" do 
