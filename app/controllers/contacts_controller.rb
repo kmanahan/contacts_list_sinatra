@@ -1,12 +1,21 @@
 class ContactsController < ApplicationController
   get "/contacts/new" do 
+     redirect_if_not_logged_in
     erb :"contacts/new"
   end 
   
   post "/contacts/new" do 
-    @contact = current_user.contacts.create(params)
-    erb :"contacts/show"
-  end 
+     redirect_if_not_logged_in
+      @contact = Contact.new(params)
+      if @contact.valid?
+        @contact.save
+        @contact = current_user.contacts.create(params)
+        redirect "/contacts/#{@contact.id}/show"
+      else
+        flash[:message] = "something went wrong"
+        redirect "contacts/new"
+      end 
+    end
   
   get "/contacts/:id/show" do 
     @contact = current_user.contacts.find(params[:id])

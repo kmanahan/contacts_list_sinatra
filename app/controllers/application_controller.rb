@@ -30,6 +30,13 @@ end
     
     def authorized?(contact)
       contact.user == current_user
+    end 
+    
+    def redirect_if_not_logged_in 
+      if !logged_in? 
+        flash[:message] = "please log in first"
+        redirect "/"
+      end
     end
     
   end 
