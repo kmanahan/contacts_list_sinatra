@@ -5,4 +5,4 @@
 <a class="btn" href ="/contacts/<%= @contact.id %>/edit">Edit</a>
 <form action="/contacts/<%= @contact.id %>" method="post"><br>
 <input id="hidden" type="hidden" name="_method" value="delete">
-<button type="submit">Delete</button>
+<button type="submit" onclick="return confirm('Are you sure?')">Delete</button>

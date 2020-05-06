@@ -74,8 +74,6 @@ class ContactsController < ApplicationController
       @contact.delete
       redirect "/contacts"
     else 
-     #are you sure you want to delete
-     #flash message contact has been deleted 
       redirect "/contacts"
     end
   end 
