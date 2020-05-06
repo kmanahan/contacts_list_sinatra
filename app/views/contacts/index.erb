@@ -6,12 +6,12 @@
 
 <div>
   <% @user.contacts.each do |attribute| %>
-  <ul>
+  <ul class="contact_index">
     <li><%=attribute.name%></li>
     <li><%=attribute.phone%></li>
     <li><%=attribute.email%></li>
-    <li><%=attribute.address%></li>
-    <a href="/contacts/<%=attribute.id %>/show">View</a><br><br>
+    <li><%=attribute.address%></li><br>
+    <a class="btn" href="/contacts/<%=attribute.id %>/show">View</a><br><br>
   </ul>
  <%end%>
 </div>

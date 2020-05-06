@@ -84,7 +84,7 @@
     padding-top: 20px;
   }
   
-  ul {
+  ul.menu {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -92,11 +92,11 @@
   background-color: #A9A9A9;
 }
 
-li {
+ul.menu li {
   float: left;
 }
 
-li a {
+ul.menu li a {
   display: block;
   color: white;
   text-align: center;
@@ -104,20 +104,49 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+ul.menu li a:hover {
   background-color: #696969;
 }
 
 a.btn{
- background-color:#cc0000;
- border:1px solid #660000;
- border-radius:5px;
+ background-color:#52474d;
+ border:1px solid #443b40;
+ border-radius:4px;
  color:#fff;
- margin-right:10px;
- padding:10px 10px 10px 10px;
+ margin:10px;
+ padding:10px;
  text-decoration:none
 }
-  
+
+a.btn:hover{
+  background-color:#443b40
+}
+
+button{
+  background-color:#52474d;
+  border:1px solid #443b40;
+  border-radius:4px;
+  color:#fff;
+  margin:10px;
+  padding:10px;
+}
+
+button:hover{
+  background-color:#443b40
+}
+
+input[type=button], input[type=submit], input[type=reset] { 
+  background-color:#52474d;
+  border:1px solid #443b40;
+  border-radius:4px;
+  color:#fff;
+  margin:10px;
+  padding:10px;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover { 
+  background-color:#443b40
+}
 }
 
 
