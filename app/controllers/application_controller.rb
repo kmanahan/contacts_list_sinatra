@@ -28,13 +28,13 @@ end
       User.find_by(id: session[:user_id])
     end 
     
-    def authorized?(contact)
-      contact.user == current_user
-    end 
+    # def authorized?(contact)
+    #   contact.user == current_user
+    # end 
     
-    def redirect_if_not_logged_in 
+    def redirect_if_not_authorized 
       if !logged_in? 
-        flash[:message] = "please log in first"
+        flash[:message] = "you do not have access to this page"
         redirect "/"
       end
     end
