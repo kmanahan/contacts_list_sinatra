@@ -37,8 +37,12 @@ class UsersController < ApplicationController
   
   get "/users/:id" do 
     @user = User.find_by(:username => params[:username])
-    @user = current_user
-    erb :"users/show"
+    if @user = current_user
+      erb :"users/show" 
+    else 
+      flash[:message] = "oops, you do not have access to this page" 
+      redirect "/"
+    end
   end
 
  get "/logout" do 
